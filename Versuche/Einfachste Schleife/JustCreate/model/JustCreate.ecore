@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activities="platform:/plugin/SDMLanguage/model/SDMLanguage.ecore#//activities" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="JustCreate" nsURI="platform:/plugin/JustCreate/model/JustCreate.ecore" nsPrefix="JustCreate">
+  <eClassifiers xsi:type="ecore:EClass" name="MeinVersuch">
+    <eOperations xsi:type="activities:MoflonEOperation" name="makeMore">
+      <activity owningOperation="//MeinVersuch/makeMore">
+        <ownedActivityEdge source="//MeinVersuch/makeMore/@activity/@ownedActivityNode.0" target="//MeinVersuch/makeMore/@activity/@ownedActivityNode.1"/>
+        <ownedActivityEdge source="//MeinVersuch/makeMore/@activity/@ownedActivityNode.1" target="//MeinVersuch/makeMore/@activity/@ownedActivityNode.2" guard="END"/>
+        <ownedActivityNode xsi:type="activities:StartNode" outgoing="//MeinVersuch/makeMore/@activity/@ownedActivityEdge.0"/>
+        <ownedActivityNode xsi:type="activities:StoryNode" name="DasExplodiert" comment="DasExplodiert" outgoing="//MeinVersuch/makeMore/@activity/@ownedActivityEdge.1" incoming="//MeinVersuch/makeMore/@activity/@ownedActivityEdge.0" forEach="true">
+          <storyPattern comment="DasExplodiert">
+            <objectVariable type="//MeinVersuch" name="this" incomingLink="//MeinVersuch/makeMore/@activity/@ownedActivityNode.1/@storyPattern/@linkVariable.0 //MeinVersuch/makeMore/@activity/@ownedActivityNode.1/@storyPattern/@linkVariable.1" bindingState="BOUND"/>
+            <objectVariable type="//WirdErstellt" name="istDa" outgoingLink="//MeinVersuch/makeMore/@activity/@ownedActivityNode.1/@storyPattern/@linkVariable.0" bindingOperator="CREATE"/>
+            <objectVariable type="//WirdErstellt" name="neu" outgoingLink="//MeinVersuch/makeMore/@activity/@ownedActivityNode.1/@storyPattern/@linkVariable.1" bindingOperator="CREATE"/>
+            <linkVariable name="meinVersuch" target="//MeinVersuch/makeMore/@activity/@ownedActivityNode.1/@storyPattern/@objectVariable.0" source="//MeinVersuch/makeMore/@activity/@ownedActivityNode.1/@storyPattern/@objectVariable.1" type="//WirdErstellt/meinVersuch" bindingOperator="CREATE"/>
+            <linkVariable name="meinVersuch" target="//MeinVersuch/makeMore/@activity/@ownedActivityNode.1/@storyPattern/@objectVariable.0" source="//MeinVersuch/makeMore/@activity/@ownedActivityNode.1/@storyPattern/@objectVariable.2" type="//WirdErstellt/meinVersuch" bindingOperator="CREATE"/>
+          </storyPattern>
+        </ownedActivityNode>
+        <ownedActivityNode xsi:type="activities:StopNode" incoming="//MeinVersuch/makeMore/@activity/@ownedActivityEdge.1"/>
+      </activity>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="wirdErstellts" upperBound="-1" eType="//WirdErstellt" containment="true" eOpposite="//WirdErstellt/meinVersuch"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfInstances" ordered="false" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WirdErstellt">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="meinVersuch" eType="//MeinVersuch" eOpposite="//MeinVersuch/wirdErstellts"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" ordered="false" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>
